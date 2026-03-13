@@ -10,6 +10,8 @@
 #define ADJ  3
 #define NAV  4
 
+#define MO_TOG(layer) &mo_tog layer layer
+
 / {
     conditional_layers {
         compatible = "zmk,conditional-layers";
@@ -19,16 +21,35 @@
         };
     };
 
+    behaviors {
+        mo_tog: behavior_mo_tog {
+            compatible = "zmk,behavior-hold-tap";
+             #binding_cells = <2>;
+             flavor = "hold-preferred";
+             tapping-term-ms = <200>;
+             bindings = <&mo>, <&tog>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_del_word {
+            timeout-ms = <50>;
+            key-positions = <11 12>;
+            bindings = <&kp LA(BSPC)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         base {
             display-name = "BASE";
             bindings = <
-                &kp  TAB       &kp Q &kp W        &kp E     &kp R     &kp T   &kp Y &kp U    &kp I     &kp O   &kp P    &kp BSPC
-                &mt  LCTRL ESC &kp A &kp S        &kp D     &kp F     &kp G   &kp H &kp J    &kp K     &kp L   &kp SEMI &kp SQT
-                &tog NAV       &kp Z &kp X        &kp C     &kp V     &kp B   &kp N &kp M    &kp COMMA &kp DOT &kp FSLH &mt LSHFT ENTER
-                                     &lt SYM HOME &kp SPACE &kp LGUI                &kp RALT &kp RSHFT &lt NUM END
+                &kp  TAB       &kp Q &kp W        &kp E     &kp R     &kp T   &kp Y &kp U     &kp I     &kp O   &kp P    &kp BSPC
+                &mt  LCTRL ESC &kp A &kp S        &kp D     &kp F     &kp G   &kp H &kp J     &kp K     &kp L   &kp SEMI &mt RCTL SQT
+                MO_TOG(NAV)    &kp Z &kp X        &kp C     &kp V     &kp B   &kp N &kp M     &kp COMMA &kp DOT &kp FSLH &mt LSHFT ENTER
+                                     &lt SYM HOME &kp LGUI  &kp SPACE               &kp RSHFT &kp RALT  &lt NUM END
             >;
         };
 
@@ -45,10 +66,10 @@
         sym {
             display-name = "SYM";
             bindings = <
-                &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp DEL
-                &trans    &trans   &trans &trans   &trans   &trans      &kp PIPE  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &trans
-                &trans    &trans   &trans &trans   &trans   &trans      &kp BSLH  &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &trans
-                                   &trans &trans   &trans                         &trans    &trans    &trans
+                &kp TILDE  &kp EXCL     &kp AT       &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp DEL
+                &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &trans   &trans   &trans      &kp PIPE  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &trans
+                &trans     &trans       &trans       &trans   &trans   &trans      &kp BSLH  &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &trans
+                                        &trans       &trans   &trans                         &trans    &trans    &trans
             >;
         };
 
@@ -65,9 +86,9 @@
         nav {
             display-name = "NAV";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &trans &trans    &kp UP    &trans    &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &kp LEFT  &kp DOWN  &kp RIGHT &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans    &trans    &trans    &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans         &kp UP         &trans    &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &kp LEFT       &kp DOWN       &kp RIGHT &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &msc SCRL_DOWN &msc SCRL_UP   &trans    &trans    &trans &trans   
                               &trans &trans &trans               &mkp LCLK &mkp MCLK &mkp RCLK
             >;
         };
