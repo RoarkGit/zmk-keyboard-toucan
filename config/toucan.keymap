@@ -42,12 +42,12 @@
         };
     };
 
-    &mt {
-        flavor = "balanced";
-    };
-
     keymap {
         compatible = "zmk,keymap";
+
+        &mt {
+            flavor = "balanced";
+        };
 
         base {
             display-name = "BASE";
