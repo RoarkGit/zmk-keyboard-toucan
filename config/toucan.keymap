@@ -11,6 +11,8 @@
 #define NAV  4
 
 #define MO_TOG(layer) &mo_tog layer layer
+#define TFWD LC(TAB)
+#define TBAK LS(LC(TAB))
 
 / {
     conditional_layers {
@@ -86,10 +88,10 @@
         nav {
             display-name = "NAV";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &trans &trans         &kp UP         &trans    &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &kp LEFT       &kp DOWN       &kp RIGHT &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &msc SCRL_DOWN &msc SCRL_UP   &trans    &trans    &trans &trans   
-                              &trans &trans &trans               &mkp LCLK &mkp MCLK &mkp RCLK
+                &trans &trans &trans &trans &trans &trans &kp TBAK &trans         &kp UP         &trans    &trans &trans
+                &trans &trans &trans &trans &trans &trans &kp TFWD &kp LEFT       &kp DOWN       &kp RIGHT &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans   &msc SCRL_DOWN &msc SCRL_UP   &trans    &trans &trans
+                              &trans &trans &trans                 &mkp LCLK &mkp MCLK &mkp RCLK
             >;
         };
         
