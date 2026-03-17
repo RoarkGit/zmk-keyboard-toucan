@@ -37,9 +37,13 @@
         compatible = "zmk,combos";
         combo_del_word {
             timeout-ms = <50>;
-            key-positions = <11 12>;
+            key-positions = <10 11>;
             bindings = <&kp LA(BSPC)>;
         };
+    };
+
+    &mt {
+        flavor = "balanced";
     };
 
     keymap {
@@ -58,30 +62,30 @@
         num {
             display-name = "NUM";
             bindings = <
-                &kp GRAVE &kp N1         &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &kp DEL
-                &trans    &trans         &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans    &studio_unlock &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                                         &trans &trans &trans               &trans &trans &trans
+                &kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &kp DEL
+                &trans    &trans &trans &trans &trans &trans &kp PIPE  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &trans
+                &trans    &trans &trans &trans &trans &trans &kp BSLH  &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &trans
+                                 &trans &trans &trans                  &trans    &trans    &trans
             >;
         };
 
         sym {
             display-name = "SYM";
             bindings = <
-                &kp TILDE  &kp EXCL     &kp AT       &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp DEL
-                &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &trans   &trans   &trans      &kp PIPE  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &trans
-                &trans     &trans       &trans       &trans   &trans   &trans      &kp BSLH  &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &trans
-                                        &trans       &trans   &trans                         &trans    &trans    &trans
+                &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp DEL
+                &trans    &trans   &trans &trans   &trans   &trans    &kp PIPE  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &trans
+                &trans    &trans   &trans &trans   &trans   &trans    &kp BSLH  &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &trans
+                                   &trans &trans   &trans                       &trans    &trans    &trans
             >;
         };
 
         adj {
             display-name = "ADJ";
             bindings = <
-                &trans &kp F1         &kp F2 &kp F3 &kp F4 &kp F5  &kp F6  &kp F7 &kp F8 &kp F9 &kp F10 &trans
-                &trans &trans         &trans &trans &trans &kp F11 &kp F12 &trans &trans &trans &trans  &trans
-                &trans &studio_unlock &trans &trans &trans &trans  &trans  &trans &trans &trans &trans  &trans
-                                      &trans &trans &trans                 &trans &trans &trans
+                &out OUT_USB &kp F1         &kp F2        &kp F3        &kp F4       &kp F5  &kp F6  &kp F7 &kp F8 &kp F9 &kp F10 &trans
+                &out OUT_BLE &bt BT_SEL 0   &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &kp F11 &kp F12 &trans &trans &trans &trans  &trans
+                &bt BT_CLR   &studio_unlock &trans        &trans        &trans       &trans  &trans  &trans &trans &trans &trans  &trans
+                                            &trans        &trans        &trans                       &trans &trans &trans
             >;
         };
 
