@@ -104,7 +104,7 @@
     };
 
     glidepoint_listener: glidepoint_listener {
-        compatible = "zmk,input-listener";zi
+        compatible = "zmk,input-listener";
         status = "disabled";
         device = <&glidepoint_split>;
         input-processors = <
