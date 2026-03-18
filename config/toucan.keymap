@@ -92,10 +92,10 @@
         nav {
             display-name = "NAV";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &kp TBAK &trans         &kp UP         &trans    &trans &trans
-                &trans &trans &trans &trans &trans &trans &kp TFWD &kp LEFT       &kp DOWN       &kp RIGHT &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans   &msc SCRL_DOWN &msc SCRL_UP   &trans    &trans &trans
-                              &trans &trans &trans                 &mkp LCLK &mkp MCLK &mkp RCLK
+                &trans &trans &trans &trans &trans &trans &mkp RCLK &trans         &kp UP         &trans    &trans &trans
+                &trans &trans &trans &trans &trans &trans &mkp MCLK &kp LEFT       &kp DOWN       &kp RIGHT &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans    &msc SCRL_DOWN &msc SCRL_UP   &trans    &trans &trans
+                              &trans &trans &trans                  &mkp LCLK      &kp TBAK &kp TFWD
             >;
         };
         
