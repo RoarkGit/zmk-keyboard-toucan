@@ -108,7 +108,7 @@
         status = "disabled";
         device = <&glidepoint_split>;
         input-processors = <
-            &p_xy_scaler 250 100
+            &zip_xy_scaler 250 100
             &zip_temp_layer 4 2000
         >;
         scroller {
