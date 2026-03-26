@@ -45,7 +45,7 @@
         td_hyper: tap_dance_hyper {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <200>;
             bindings = <MO_TOG(NAV)>, <&kp LS(LGUI)>;
         };
     };
