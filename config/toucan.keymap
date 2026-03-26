@@ -28,7 +28,7 @@
             compatible = "zmk,behavior-hold-tap";
              #binding-cells = <2>;
              flavor = "hold-preferred";
-             tapping-term-ms = <100>;
+             tapping-term-ms = <50>;
              bindings = <&mo>, <&tog>;
         };
 
@@ -45,7 +45,7 @@
         td_hyper: tap_dance_hyper {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <150>;
             bindings = <MO_TOG(NAV)>, <&kp LS(LGUI)>;
         };
     };
