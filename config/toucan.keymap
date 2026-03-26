@@ -46,7 +46,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LGUI>, <&kp LS(LGUI)>;
+            bindings = <MO_TOG(NAV)>, <&kp LS(LGUI)>;
         };
     };
 
@@ -65,10 +65,10 @@
         base {
             display-name = "BASE";
             bindings = <
-                &kp  TAB        &kp Q &kp W &kp E  &kp R     &kp T     &kp Y &kp U     &kp I     &kp O   &kp P    &kp BSPC
-                &mttp LCTRL ESC &kp A &kp S &kp D  &kp F     &kp G     &kp H &kp J     &kp K     &kp L   &kp SEMI &mttp RCTL SQT
-                MO_TOG(NAV)     &kp Z &kp X &kp C  &kp V     &kp B     &kp N &kp M     &kp COMMA &kp DOT &kp FSLH &mttp LSHFT ENTER
-                                      &lt SYM HOME &kp SPACE &td_hyper                 &kp RALT  &kp RSHFT &lt NUM END
+                &kp  TAB        &kp Q &kp W &kp E  &kp R     &kp T     &kp Y &kp U &kp I     &kp O     &kp P    &kp BSPC
+                &mttp LCTRL ESC &kp A &kp S &kp D  &kp F     &kp G     &kp H &kp J &kp K     &kp L     &kp SEMI &mttp RCTL SQT
+                &td_hyper       &kp Z &kp X &kp C  &kp V     &kp B     &kp N &kp M &kp COMMA &kp DOT   &kp FSLH &mttp LSHFT ENTER
+                                      &lt SYM HOME &kp SPACE &kp LGUI              &kp RALT  &kp RSHFT &lt NUM END
             >;
         };
 
