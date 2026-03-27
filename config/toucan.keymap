@@ -15,7 +15,7 @@
 #define TBAK LS(LC(TAB))
 
 &lt {
-    flavor: "hold-preferred";
+    flavor = "hold-preferred";
 };
 
 / {
