@@ -14,7 +14,7 @@
 #define TFWD LC(TAB)
 #define TBAK LS(LC(TAB))
 
-&lt: {
+&lt {
     flavor: "hold-preferred";
 };
 
