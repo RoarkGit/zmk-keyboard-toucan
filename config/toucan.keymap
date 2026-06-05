@@ -56,11 +56,27 @@
             bindings = <&mo>, <&mkp>;
         };
 
+        kp_tog: kp_tog {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&tog>;
+        };
+
+        mo_kp: mo_kp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <50>;
+            bindings = <&mo>, <&kp>;
+        };
+
         td_hyper: tap_dance_hyper {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <MO_TOG(NAV)>, <&kp LS(LGUI)>;
+            bindings = <&kp_tog LS(LGUI) NAV>, <&mo_kp NAV F13>;
         };
     };
 
