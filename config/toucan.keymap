@@ -7,8 +7,11 @@
 #define BASE 0
 #define NUM  1
 #define SYM  2
-#define ADJ  3
-#define NAV  4
+#define ADJ   3
+#define MOUSE    4
+#define NAV      5
+#define SCROLL_V 6
+#define SCROLL_H 7
 
 #define MO_TOG(layer) &mo_tog layer layer
 #define TFWD LC(TAB)
@@ -46,6 +49,22 @@
             display-name = "Mod-Tap-Tap-Preferred";
         };
         
+        rclk_sv: rclk_scroll_v {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <150>;
+            bindings = <&mo SCROLL_V>, <&mkp RCLK>;
+        };
+
+        mclk_sh: mclk_scroll_h {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <150>;
+            bindings = <&mo SCROLL_H>, <&mkp MCLK>;
+        };
+
         td_hyper: tap_dance_hyper {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -106,26 +125,44 @@
             >;
         };
 
+        mouse {
+            display-name = "MOUSE";
+            bindings = <
+                &trans &trans &trans &trans &trans &trans &rclk_sv  &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &mclk_sh  &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+                              &trans &trans &trans                  &mkp LCLK &trans &trans
+            >;
+        };
+
         nav {
             display-name = "NAV";
             bindings = <
-                &trans &trans &trans   &trans    &trans    &trans &mkp RCLK &trans         &kp UP       &trans    &trans &trans
-                &trans &trans &trans   &kp PG_DN &kp PG_UP &trans &mkp MCLK &kp LEFT       &kp DOWN     &kp RIGHT &trans &trans
-                &trans &trans &trans   &trans    &trans    &trans &trans    &msc SCRL_DOWN &msc SCRL_UP &trans    &trans &trans
-                              &kp LALT &kp TBAK  &kp TFWD                   &mkp LCLK      &trans       &trans
+                &trans &trans &trans   &trans    &trans    &trans &trans &trans         &kp UP       &trans    &trans &trans
+                &trans &trans &trans   &kp PG_DN &kp PG_UP &trans &trans &kp LEFT       &kp DOWN     &kp RIGHT &trans &trans
+                &trans &trans &trans   &trans    &trans    &trans &trans &msc SCRL_DOWN &msc SCRL_UP &trans    &trans &trans
+                              &kp LALT &kp TBAK  &kp TFWD                &trans         &trans       &trans
             >;
         };
-        
-        extra_1 {
-                status = "reserved";
+
+        scroll_v {
+            display-name = "SCROLL_V";
+            bindings = <
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                              &trans &trans &trans                &trans &trans &trans
+            >;
         };
 
-        extra_2 {
-                status = "reserved";
-        };
-
-        extra_3 {
-                status = "reserved";
+        scroll_h {
+            display-name = "SCROLL_H";
+            bindings = <
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                              &trans &trans &trans                &trans &trans &trans
+            >;
         };
     };
 };
