@@ -51,18 +51,18 @@
         
         rclk_sv: rclk_scroll_v {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
-            bindings = <&mo SCROLL_V>, <&mkp RCLK>;
+            bindings = <&mo>, <&mkp>;
         };
 
         mclk_sh: mclk_scroll_h {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
-            bindings = <&mo SCROLL_H>, <&mkp MCLK>;
+            bindings = <&mo>, <&mkp>;
         };
 
         td_hyper: tap_dance_hyper {
@@ -128,8 +128,8 @@
         mouse {
             display-name = "MOUSE";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &rclk_sv  &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &mclk_sh  &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &rclk_sv SCROLL_V RCLK  &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &mclk_sh SCROLL_H MCLK  &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
                               &trans &trans &trans                  &mkp LCLK &trans &trans
             >;
