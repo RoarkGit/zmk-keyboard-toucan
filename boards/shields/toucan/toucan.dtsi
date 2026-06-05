@@ -112,7 +112,7 @@
             &zip_temp_layer 4 500
         >;
         scroller {
-            layers = <6 7>;
+            layers = <6>;
             input-processors = <
                 &zip_xy_to_scroll_mapper
                 &zip_scroll_scaler 1 10

@@ -10,8 +10,7 @@
 #define ADJ   3
 #define MOUSE    4
 #define NAV      5
-#define SCROLL_V 6
-#define SCROLL_H 7
+#define SCROLL 6
 
 #define MO_TOG(layer) &mo_tog layer layer
 #define TFWD LC(TAB)
@@ -49,15 +48,7 @@
             display-name = "Mod-Tap-Tap-Preferred";
         };
         
-        rclk_sv: rclk_scroll_v {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <150>;
-            bindings = <&mo>, <&mkp>;
-        };
-
-        mclk_sh: mclk_scroll_h {
+        rclk_scrl: rclk_scroll {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -126,12 +117,12 @@
         };
 
         mouse {
-            display-name = "MOUSE";
+            display-name = "MSE";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &rclk_sv SCROLL_V RCLK  &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &mclk_sh SCROLL_H MCLK  &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
-                              &trans &trans &trans                  &mkp LCLK &trans &trans
+                &trans &trans &trans &trans &trans &trans &rclk_scrl SCROLL RCLK &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &mkp MCLK              &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans                 &trans &trans &trans &trans &trans
+                              &trans &trans &trans                               &mkp LCLK &trans &trans
             >;
         };
 
@@ -145,23 +136,13 @@
             >;
         };
 
-        scroll_v {
-            display-name = "SCROLL_V";
+        scroll {
+            display-name = "SCRL";
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                              &trans &trans &trans                &trans &trans &trans
-            >;
-        };
-
-        scroll_h {
-            display-name = "SCROLL_H";
-            bindings = <
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                              &trans &trans &trans                &trans &trans &trans
+                              &trans &trans &trans               &trans &trans &trans
             >;
         };
     };
