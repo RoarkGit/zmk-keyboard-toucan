@@ -4,6 +4,8 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
+// Renumbering these means updating the trackpad's hardcoded MOUSE/SCROLL indices in
+// boards/shields/toucan/toucan.dtsi, which cannot see these macros.
 #define BASE    0
 #define COLEMAK 1
 #define WIN     2
