@@ -42,10 +42,10 @@
 
         rclk_scrl: rclk_scroll {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
-            bindings = <&mo SCROLL>, <&mkp RCLK>;
+            bindings = <&mo>, <&mkp>;
         };
 
         kp_tog: kp_tog {
@@ -132,10 +132,10 @@
         mouse {
             display-name = "MSE";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &rclk_scrl &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &mkp MCLK  &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans     &trans &trans &trans &trans &trans
-                              &trans &trans &trans                   &mkp LCLK &trans &trans
+                &trans &trans &trans &trans &trans &trans &rclk_scrl SCROLL RCLK &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &mkp MCLK              &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans                 &trans &trans &trans &trans &trans
+                              &trans &trans &trans                               &mkp LCLK &trans &trans
             >;
         };
 
