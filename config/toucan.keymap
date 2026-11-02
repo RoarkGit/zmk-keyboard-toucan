@@ -4,15 +4,15 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#define BASE 0
-#define NUM  1
-#define SYM  2
-#define ADJ   3
-#define MOUSE    4
-#define NAV      5
-#define SCROLL 6
+#define BASE    0
+#define COLEMAK 1
+#define NUM     2
+#define SYM     3
+#define ADJ     4
+#define MOUSE   5
+#define NAV     6
+#define SCROLL  7
 
-#define MO_TOG(layer) &mo_tog layer layer
 #define TFWD LC(TAB)
 #define TBAK LS(LC(TAB))
 
@@ -24,20 +24,12 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
+            if-layers = <2 3>;
+            then-layer = <4>;
         };
     };
 
     behaviors {
-        mo_tog: behavior_mo_tog {
-            compatible = "zmk,behavior-hold-tap";
-             #binding-cells = <2>;
-             flavor = "hold-preferred";
-             tapping-term-ms = <50>;
-             bindings = <&mo>, <&tog>;
-        };
-
         mttp: behavior_mod_tap_tap_preferred {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -47,13 +39,13 @@
             bindings = <&kp>, <&kp>;
             display-name = "Mod-Tap-Tap-Preferred";
         };
-        
+
         rclk_scrl: rclk_scroll {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
-            bindings = <&mo>, <&mkp>;
+            bindings = <&mo SCROLL>, <&mkp RCLK>;
         };
 
         kp_tog: kp_tog {
@@ -70,9 +62,9 @@
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
             quick-tap-ms = <125>;
+            require-prior-idle-ms = <125>;
             bindings = <&mo>, <&kp>;
         };
-
     };
 
     combos {
@@ -90,10 +82,20 @@
         base {
             display-name = "BASE";
             bindings = <
-                &mo_kp NAV TAB  &kp Q &kp W &kp E  &kp R     &kp T     &kp Y &kp U &kp I     &kp O     &kp P    &kp BSPC
-                &mttp LCTRL ESC &kp A &kp S &kp D  &kp F     &kp G     &kp H &kp J &kp K     &kp L     &kp SEMI &mttp RCTL SQT
-                &kp_tog LS(LGUI) NAV &kp Z &kp X &kp C  &kp V     &kp B     &kp N &kp M &kp COMMA &kp DOT   &kp FSLH &mttp LSHFT ENTER
-                                      &lt SYM HOME &kp SPACE &kp LGUI              &kp RALT  &kp RSHFT &lt NUM END
+                &mo_kp NAV TAB       &kp Q &kp W        &kp E     &kp R    &kp T &kp Y &kp U    &kp I     &kp O       &kp P    &kp BSPC
+                &mttp LCTRL ESC      &kp A &kp S        &kp D     &kp F    &kp G &kp H &kp J    &kp K     &kp L       &kp SEMI &mttp RCTL SQT
+                &kp_tog LS(LGUI) NAV &kp Z &kp X        &kp C     &kp V    &kp B &kp N &kp M    &kp COMMA &kp DOT     &kp FSLH &mttp LSHFT ENTER
+                                           &lt SYM HOME &kp SPACE &kp LGUI             &kp RALT &kp RSHFT &lt NUM END
+            >;
+        };
+
+        colemak {
+            display-name = "CMK";
+            bindings = <
+                &trans &kp Q &kp W  &kp F  &kp P  &kp G &kp J &kp L  &kp U     &kp Y   &kp SEMI &trans
+                &trans &kp A &kp R  &kp S  &kp T  &kp D &kp H &kp N  &kp E     &kp I   &kp O    &trans
+                &trans &kp Z &kp X  &kp C  &kp V  &kp B &kp K &kp M  &kp COMMA &kp DOT &kp FSLH &trans
+                             &trans &trans &trans             &trans &trans    &trans
             >;
         };
 
@@ -120,7 +122,7 @@
         adj {
             display-name = "ADJ";
             bindings = <
-                &out OUT_USB &kp F1         &kp F2        &kp F3        &kp F4       &kp F5  &kp F6  &kp F7 &kp F8 &kp F9 &kp F10 &trans
+                &out OUT_USB &kp F1         &kp F2        &kp F3        &kp F4       &kp F5  &kp F6  &kp F7 &kp F8 &kp F9 &kp F10 &tog COLEMAK
                 &out OUT_BLE &bt BT_SEL 0   &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &kp F11 &kp F12 &trans &trans &trans &trans  &trans
                 &bt BT_CLR   &studio_unlock &trans        &trans        &trans       &kp F13 &kp F14 &trans &trans &trans &trans  &trans
                                             &trans        &trans        &trans                       &trans &trans &trans
@@ -130,10 +132,10 @@
         mouse {
             display-name = "MSE";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &rclk_scrl SCROLL RCLK &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &mkp MCLK              &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans                 &trans &trans &trans &trans &trans
-                              &trans &trans &trans                               &mkp LCLK &trans &trans
+                &trans &trans &trans &trans &trans &trans &rclk_scrl &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &mkp MCLK  &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans     &trans &trans &trans &trans &trans
+                              &trans &trans &trans                   &mkp LCLK &trans &trans
             >;
         };
 
