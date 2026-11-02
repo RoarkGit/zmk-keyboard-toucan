@@ -51,6 +51,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     // Draw widgets
     draw_output_status(canvas, state);
     draw_layer_status(canvas, state);
+    draw_os_mode_status(canvas, state);
     draw_profile_status(canvas, state);
     draw_battery_status(canvas, state);
     draw_battery_peripheral_status(canvas, state);
@@ -136,7 +137,8 @@ ZMK_SUBSCRIPTION(widget_battery_peripheral_status, zmk_peripheral_battery_state_
  **/
 
 static void set_layer_status(struct zmk_widget_screen *widget, struct layer_status_state state) {
-    widget->state.layer_index = zmk_keymap_highest_layer_active();
+    widget->state.layer_index = zmk_display_visible_layer_index();
+    widget->state.win_mode = zmk_display_win_mode_active();
     draw_top(widget->obj, widget->cbuf3, &widget->state);
 }
 
@@ -146,7 +148,7 @@ static void layer_status_update_cb(struct layer_status_state state) {
 }
 
 static struct layer_status_state layer_status_get_state(const zmk_event_t *eh) {
-    uint8_t index = zmk_keymap_highest_layer_active();
+    uint8_t index = zmk_display_visible_layer_index();
     return (struct layer_status_state) {
         .index = index
     };
