@@ -6,12 +6,13 @@
 
 #define BASE    0
 #define COLEMAK 1
-#define NUM     2
-#define SYM     3
-#define ADJ     4
-#define MOUSE   5
-#define NAV     6
-#define SCROLL  7
+#define WIN     2
+#define NUM     3
+#define SYM     4
+#define ADJ     5
+#define MOUSE   6
+#define NAV     7
+#define SCROLL  8
 
 #define TFWD LC(TAB)
 #define TBAK LS(LC(TAB))
@@ -24,8 +25,8 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <2 3>;
-            then-layer = <4>;
+            if-layers = <3 4>;
+            then-layer = <5>;
         };
     };
 
@@ -99,13 +100,23 @@
             >;
         };
 
+        win {
+            display-name = "WIN";
+            bindings = <
+                &trans                &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans &trans
+                &trans                &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans &trans
+                &kp_tog LS(LCTRL) NAV &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans &trans
+                                             &trans &trans &kp LCTRL               &trans &trans &trans
+            >;
+        };
+
         num {
             display-name = "NUM";
             bindings = <
-                &kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &kp DEL
-                &trans    &trans &trans &trans &trans &trans &kp PIPE  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &trans
-                &trans    &trans &trans &trans &trans &trans &kp BSLH  &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &trans
-                                 &trans &trans &trans                  &trans    &trans    &trans
+                &kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4   &kp N5 &kp N6   &kp N7    &kp N8    &kp N9   &kp N0   &kp DEL
+                &trans    &trans &trans &trans &trans   &trans &kp PIPE &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &trans
+                &trans    &trans &trans &trans &trans   &trans &kp BSLH &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &trans
+                                 &trans &trans &kp LGUI                 &kp LGUI  &trans    &trans
             >;
         };
 
@@ -115,7 +126,7 @@
                 &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp DEL
                 &trans    &trans   &trans &trans   &trans   &trans    &kp PIPE  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &trans
                 &trans    &trans   &trans &trans   &trans   &trans    &kp BSLH  &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &trans
-                                   &trans &trans   &trans                       &trans    &trans    &trans
+                                   &trans &trans   &kp LGUI                     &kp LGUI  &trans    &trans
             >;
         };
 
@@ -123,7 +134,7 @@
             display-name = "ADJ";
             bindings = <
                 &out OUT_USB &kp F1         &kp F2        &kp F3        &kp F4       &kp F5  &kp F6  &kp F7 &kp F8 &kp F9 &kp F10 &tog COLEMAK
-                &out OUT_BLE &bt BT_SEL 0   &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &kp F11 &kp F12 &trans &trans &trans &trans  &trans
+                &out OUT_BLE &bt BT_SEL 0   &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &kp F11 &kp F12 &trans &trans &trans &trans  &tog WIN
                 &bt BT_CLR   &studio_unlock &trans        &trans        &trans       &kp F13 &kp F14 &trans &trans &trans &trans  &trans
                                             &trans        &trans        &trans                       &trans &trans &trans
             >;
